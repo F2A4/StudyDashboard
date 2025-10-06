@@ -1,0 +1,74 @@
+{
+  "studieninfo": {
+    "startdatum": "2025-03-01",
+    "total_ects": 180,
+    "total_semester": 6,
+    "ects_pro_semester_ziel": 30,
+    "ects_pro_monat_ziel": 5,
+    "notenziel": 2.0,
+    "ziel_monate": 36
+  },
+  "exams": [
+    {
+      "semester": 1,
+      "prüfungsname": "Kollaboratives Arbeiten",
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-03-01"
+    },
+    {
+      "semester": 1,
+      "prüfungsname": "Artificial Intelligence",
+      "note": 2.3,
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-04-07"
+    },
+    {
+      "semester": 1,
+      "prüfungsname": "Einführung in die Programmierung mit Python",
+      "note": 2.3,
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-04-23"
+    },
+    {
+      "semester": 1,
+      "prüfungsname": "Einführung in das wissenschaftliche Arbeiten für IT und Technik",
+      "note": 2.0,
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-05-09"
+    },
+    {
+      "semester": 1,
+      "prüfungsname": "Mathematik: Analysis",
+      "note": 5.0,
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-06-24"
+    },
+    {
+      "semester": 1,
+      "prüfungsname": "Mathematik: Analysis",
+      "note": 4.0,
+      "ects": 5,
+      "versuch": 2,
+      "datum": "2025-08-28"
+    },
+    {
+      "semester": 2,
+      "prüfungsname": "Interkulturelle und ethische Handlungskompetenzen",
+      "note": 1.7,
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-10-01"
+    }
+  ],
+  "study_time": [
+    {"week_start": "2025-09-08", "hours": 24.0},
+    {"week_start": "2025-09-15", "hours": 28.5},
+    {"week_start": "2025-09-22", "hours": 27.0},
+    {"week_start": "2025-09-29", "hours": 25.5}
+  ]
+}
