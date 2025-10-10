@@ -253,7 +253,7 @@ class Dashboard(tk.Tk):
         c = tk.Canvas(parent, height=height, bg=COLOR_BG, highlightthickness=0)
         c.pack(fill=tk.X, pady=(6, 0))
 
-        def redraw():
+        def redraw(event=None):
             w = c.winfo_width()
             if w <= 1:
                 return
