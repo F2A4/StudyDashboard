@@ -66,9 +66,137 @@
     }
   ],
   "study_time": [
-    {"week_start": "2025-09-08", "hours": 24.0},
-    {"week_start": "2025-09-15", "hours": 28.5},
-    {"week_start": "2025-09-22", "hours": 27.0},
-    {"week_start": "2025-09-29", "hours": 25.5}
+    {
+      "week_start": "2025-02-24",
+      "hours": 32.5
+    },
+    {
+      "week_start": "2025-03-03",
+      "hours": 25.0
+    },
+    {
+      "week_start": "2025-03-10",
+      "hours": 42.5
+    },
+    {
+      "week_start": "2025-03-17",
+      "hours": 28.6
+    },
+    {
+      "week_start": "2025-03-24",
+      "hours": 20.2
+    },
+    {
+      "week_start": "2025-03-31",
+      "hours": 35.7
+    },
+    {
+      "week_start": "2025-04-07",
+      "hours": 18.3
+    },
+    {
+      "week_start": "2025-04-14",
+      "hours": 47.4
+    },
+    {
+      "week_start": "2025-04-21",
+      "hours": 26.8
+    },
+    {
+      "week_start": "2025-04-28",
+      "hours": 41.8
+    },
+    {
+      "week_start": "2025-05-05",
+      "hours": 45.0
+    },
+    {
+      "week_start": "2025-05-12",
+      "hours": 49.5
+    },
+    {
+      "week_start": "2025-05-19",
+      "hours": 50
+    },
+    {
+      "week_start": "2025-05-26",
+      "hours": 25.3
+    },
+    {
+      "week_start": "2025-06-02",
+      "hours": 44.8
+    },
+    {
+      "week_start": "2025-06-09",
+      "hours": 44.7
+    },
+    {
+      "week_start": "2025-06-16",
+      "hours": 33.7
+    },
+    {
+      "week_start": "2025-06-23",
+      "hours": 23.4
+    },
+    {
+      "week_start": "2025-06-30",
+      "hours": 20.6
+    },
+    {
+      "week_start": "2025-07-07",
+      "hours": 20.5
+    },
+    {
+      "week_start": "2025-07-14",
+      "hours": 33.7
+    },
+    {
+      "week_start": "2025-07-21",
+      "hours": 27.2
+    },
+    {
+      "week_start": "2025-07-28",
+      "hours": 36.5
+    },
+    {
+      "week_start": "2025-08-04",
+      "hours": 9.2
+    },
+    {
+      "week_start": "2025-08-11",
+      "hours": 20.7
+    },
+    {
+      "week_start": "2025-08-18",
+      "hours": 33.1
+    },
+    {
+      "week_start": "2025-08-25",
+      "hours": 25.7
+    },
+    {
+      "week_start": "2025-09-01",
+      "hours": 39.4
+    },
+    {
+      "week_start": "2025-09-08",
+      "hours": 34.4
+    },
+    {
+      "week_start": "2025-09-15",
+      "hours": 43.1
+    },
+    {
+      "week_start": "2025-09-22",
+      "hours": 24.6
+    },
+    {
+      "week_start": "2025-09-29",
+      "hours": 31.4
+    },
+    {
+      "week_start": "2025-10-06",
+      "hours": 44.2
+    }
   ]
 }

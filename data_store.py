@@ -9,7 +9,7 @@ from collections import defaultdict
 DATA_FILE = Path(__file__).with_name("data.json")
 
 
-def _parse_date(value: str) -> date:
+def _parse_date(value: str):
 	return datetime.strptime(value, "%Y-%m-%d").date()
 
 
@@ -29,17 +29,17 @@ class SemesterGrades:
 	courses: List[Course]
 
 
-def load_json() -> Dict[str, Any]:
+def load_json():
 	with open(DATA_FILE, "r", encoding="utf-8") as f:
 		return json.load(f)
 
 
-def save_json(data: Dict[str, Any]) -> None:
+def save_json(data: Dict[str, Any]):
 	with open(DATA_FILE, "w", encoding="utf-8") as f:
 		json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def _to_bool(val: Any) -> bool:
+def _to_bool(val: Any):
 	if isinstance(val, bool):
 		return val
 	if val is None:
@@ -48,10 +48,7 @@ def _to_bool(val: Any) -> bool:
 	return text in {"true", "1", "ja", "yes", "y"}
 
 
-def get_general() -> Dict[str, Any]:
-	"""Return a unified general dict with keys: ects_required, planned_duration_months, start_date.
-	Supports old schema (general) and new schema (studieninfo).
-	"""
+def get_general():
 	data = load_json()
 	if "general" in data:
 		g = data["general"]
@@ -76,7 +73,7 @@ def get_general() -> Dict[str, Any]:
 		}
 
 
-def get_semester_grades() -> List[SemesterGrades]:
+def get_semester_grades():
 	data = load_json()
 	semesters: List[SemesterGrades] = []
 	if "grades" in data:
@@ -118,7 +115,7 @@ def get_semester_grades() -> List[SemesterGrades]:
 		return []
 
 
-def get_study_time_weeks() -> List[Tuple[date, float]]:
+def get_study_time_weeks():
 	data = load_json()
 	weeks: List[Tuple[date, float]] = []
 	for w in data.get("study_time", []):

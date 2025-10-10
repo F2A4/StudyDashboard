@@ -13,10 +13,7 @@ class KPIStatus:
 	label: str
 
 
-def _latest_course_map(semesters: Iterable[SemesterGrades]) -> Dict[str, Tuple[Course, int]]:
-	"""Return mapping course_name -> (latest_course, semester_of_latest).
-	Latest is chosen by highest attempt, then latest date.
-	"""
+def _latest_course_map(semesters: Iterable[SemesterGrades]):
 	latest: Dict[str, Tuple[Course, int]] = {}
 	for s in semesters:
 		for c in s.courses:
@@ -33,12 +30,11 @@ def _latest_course_map(semesters: Iterable[SemesterGrades]) -> Dict[str, Tuple[C
 	return latest
 
 
-def _latest_courses_list(semesters: Iterable[SemesterGrades]) -> List[Course]:
+def _latest_courses_list(semesters: Iterable[SemesterGrades]):
 	return [c for c, _ in _latest_course_map(semesters).values()]
 
 
-def semester_average_grades(semesters: Iterable[SemesterGrades]) -> Dict[int, float]:
-	"""Average grade per semester using only latest attempts, weighted by ECTS. Excludes semester 0."""
+def semester_average_grades(semesters: Iterable[SemesterGrades]):
 	latest = _latest_course_map(list(semesters))
 	acc: Dict[int, Tuple[float, int]] = {}
 	for c, sem in latest.values():
@@ -51,7 +47,7 @@ def semester_average_grades(semesters: Iterable[SemesterGrades]) -> Dict[int, fl
 	return {sem: round(total / ects, 2) if ects else 0.0 for sem, (total, ects) in acc.items()}
 
 
-def weighted_average_grade(semesters: Iterable[SemesterGrades]) -> Optional[float]:
+def weighted_average_grade(semesters: Iterable[SemesterGrades]):
 	courses = _latest_courses_list(list(semesters))
 	sum_weighted = 0.0
 	sum_ects = 0
@@ -65,7 +61,7 @@ def weighted_average_grade(semesters: Iterable[SemesterGrades]) -> Optional[floa
 	return round(sum_weighted / sum_ects, 2)
 
 
-def ects_by_semester(semesters: Iterable[SemesterGrades]) -> Dict[int, int]:
+def ects_by_semester(semesters: Iterable[SemesterGrades]):
 	latest = _latest_course_map(list(semesters))
 	result: Dict[int, int] = {}
 	for course, sem in latest.values():
@@ -76,7 +72,7 @@ def ects_by_semester(semesters: Iterable[SemesterGrades]) -> Dict[int, int]:
 	return result
 
 
-def ects_current_semester_month(semesters: Iterable[SemesterGrades], today: Optional[date] = None) -> Tuple[int, int]:
+def ects_current_semester_month(semesters: Iterable[SemesterGrades], today: Optional[date] = None):
 	latest = _latest_course_map(list(semesters))
 	if not latest:
 		return 0, 0
@@ -92,7 +88,7 @@ def ects_current_semester_month(semesters: Iterable[SemesterGrades], today: Opti
 	return sem_ects, month_ects
 
 
-def ects_status(sem_ects: int, month_ects: int) -> Tuple[str, str]:
+def ects_status(sem_ects: int, month_ects: int):
 	if month_ects >= 10:
 		m = "light_green"
 	elif month_ects >= 5:
@@ -113,7 +109,7 @@ def ects_status(sem_ects: int, month_ects: int) -> Tuple[str, str]:
 	return s, m
 
 
-def pass_rate(semesters: Iterable[SemesterGrades]) -> Optional[float]:
+def pass_rate(semesters: Iterable[SemesterGrades]):
 	courses = _latest_courses_list(list(semesters))
 	attempted = 0
 	passed = 0
@@ -127,7 +123,7 @@ def pass_rate(semesters: Iterable[SemesterGrades]) -> Optional[float]:
 	return round(passed / attempted, 2)
 
 
-def repeat_ratio(semesters: Iterable[SemesterGrades]) -> Optional[float]:
+def repeat_ratio(semesters: Iterable[SemesterGrades]):
 	courses = _latest_courses_list(list(semesters))
 	failed = 0
 	success_after_repeat = 0
@@ -143,22 +139,25 @@ def repeat_ratio(semesters: Iterable[SemesterGrades]) -> Optional[float]:
 	return round(failed / success_after_repeat, 2)
 
 
-def weekly_learning_hours(weeks: Iterable[Tuple[date, float]]) -> Optional[float]:
+def weekly_learning_hours(weeks: Iterable[Tuple[date, float]]):
 	weeks = list(weeks)
 	if not weeks:
 		return None
 	return round(weeks[-1][1], 1)
 
 
-def learning_hours_status(hours: Optional[float]) -> str:
-	if hours is None:
-		return "orange"
-	if 25 <= hours <= 30:
-		return "green"
-	return "orange"
+def learning_hours_status(hours: float):
+    if hours is None:
+        return "red"
+    if 25 <= hours <= 30:
+        return "green"
+    if hours > 30:
+        return "light_green"
+    return "orange"
 
 
-def backlog_modules(semesters: Iterable[SemesterGrades], months_since_start: int) -> int:
+
+def backlog_modules(semesters: Iterable[SemesterGrades], months_since_start: int):
 	# expectation: 5 ECTS per month, only count ECTS from latest passed attempts
 	general = get_general()
 	required = int(general["ects_required"])
@@ -172,7 +171,7 @@ def backlog_modules(semesters: Iterable[SemesterGrades], months_since_start: int
 	return behind // 5
 
 
-def backlog_status(count: int) -> str:
+def backlog_status(count: int):
 	if count == 0:
 		return "green"
 	if count == 1:
@@ -180,7 +179,7 @@ def backlog_status(count: int) -> str:
 	return "red"
 
 
-def study_end_forecast(semesters: Iterable[SemesterGrades]) -> Tuple[date, str]:
+def study_end_forecast(semesters: Iterable[SemesterGrades]):
 	general = get_general()
 	start = date.fromisoformat(general["start_date"])
 	planned_months = int(general["planned_duration_months"])
@@ -222,7 +221,7 @@ def study_end_forecast(semesters: Iterable[SemesterGrades]) -> Tuple[date, str]:
 	return forecast_end, status
 
 
-def grade_status(avg: Optional[float]) -> str:
+def grade_status(avg: Optional[float]):
 	if avg is None:
 		return "orange"
 	if avg < 1.8:
