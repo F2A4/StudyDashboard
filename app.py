@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 from datetime import date, timedelta
 
 from data_store import get_general, get_semester_grades, get_study_time_weeks
@@ -11,7 +11,6 @@ from analytics import (
     ects_status,
     pass_rate,
     repeat_ratio,
-    weekly_learning_hours,
     learning_hours_status,
     backlog_modules,
     backlog_status,
@@ -41,7 +40,7 @@ class Dashboard(tk.Tk):
         self.configure(bg=COLOR_BG)
         self._build()
 
-    def _card(self, parent: tk.Widget, title: str):
+    def _card(self, parent: tk.Widget):
         frame = ttk.Frame(parent)
         frame['padding'] = 10
         return frame
@@ -107,7 +106,7 @@ class Dashboard(tk.Tk):
         rate_txt = "-" if rate is None else f"{int(rate*100)}%"
         ttk.Label(card4, text=f"Dieses Semester: {rate_txt}").pack(anchor="w")
 
-        # Row 2 KPIs
+        # Row 2
         kpi2 = ttk.Frame(content)
         kpi2.pack(fill=tk.X)
         for i in range(3):
@@ -176,7 +175,6 @@ class Dashboard(tk.Tk):
         # Create colors based on ECTS status for each semester
         colors = []
         for ects in values:
-            # Use same logic as ects_status function
             if ects > 30:
                 colors.append(STATUS_COLORS["light_green"])
             elif ects == 30:
@@ -197,7 +195,6 @@ class Dashboard(tk.Tk):
         sem_keys2 = sorted(avg_map.keys())
         avg_values = [avg_map[s] for s in sem_keys2]
 
-        # Create colors based on grade status for each semester
         grade_colors = []
         for avg in avg_values:
             grade_colors.append(STATUS_COLORS[grade_status(avg)])
@@ -217,7 +214,6 @@ class Dashboard(tk.Tk):
         scrollbar = ttk.Scrollbar(chart_container, orient="horizontal", command=line_canvas.xview)
         line_canvas.configure(xscrollcommand=scrollbar.set)
 
-        # Pack canvas and scrollbar
         line_canvas.pack(side="top", fill="both", expand=True)
         scrollbar.pack(side="bottom", fill="x")
 
@@ -236,25 +232,20 @@ class Dashboard(tk.Tk):
                 week_num = week_date.isocalendar()[1]
                 week_labels.append(f"KW {week_num}")
 
-            # Calculate canvas width based on number of weeks (show 6 weeks at a time)
             weeks_to_show = min(6, len(hours_values))
             base_width = 800  # Base width for 6 weeks
             total_width = max(base_width, len(hours_values) * (base_width // weeks_to_show))
 
             # Set scroll region
             line_canvas.configure(scrollregion=(0, 0, total_width, 250))
-
-            # Draw the line chart
             line_chart(line_canvas, (60, 200), (total_width - 120, 150), hours_values, week_labels)
 
             # Auto-scroll to the right to show latest weeks
             line_canvas.after(100, lambda: line_canvas.xview_moveto(1.0))
         else:
-            # Show "No data" message
             line_canvas.create_text(400, 125, text="Keine Lernzeit-Daten vorhanden", fill="#94a3b8", font=("Segoe UI", 14))
 
     def _open_weekly_time_dialog(self):
-        #open Dialog
         dialog = WeeklyTimeDialog(self)
         self.wait_window(dialog)
 
@@ -262,7 +253,7 @@ class Dashboard(tk.Tk):
         c = tk.Canvas(parent, height=height, bg=COLOR_BG, highlightthickness=0)
         c.pack(fill=tk.X, pady=(6, 0))
 
-        def redraw(event=None):
+        def redraw():
             w = c.winfo_width()
             if w <= 1:
                 return

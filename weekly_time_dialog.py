@@ -35,7 +35,7 @@ class WeeklyTimeDialog(tk.Toplevel):
         week_section = ttk.LabelFrame(main_frame, text="Woche auswählen")
         week_section.pack(fill=tk.X, pady=(0, 15))
 
-        # Selected week display (create first)
+        # Selected week display
         self.selected_week_label = ttk.Label(week_section, text="", font=("Arial", 10, "bold"))
         self.selected_week_label.pack(pady=(10, 5))
 
@@ -144,7 +144,7 @@ class WeeklyTimeDialog(tk.Toplevel):
         first_day = date(year, month, 1)
         last_day = date(year, month + 1, 1) - timedelta(days=1) if month < 12 else date(year + 1, 1, 1) - timedelta(days=1)
 
-        # Calculate starting position (Monday = 0)
+        # Calculate starting position
         start_pos = (first_day.weekday()) % 7
 
         # Create week buttons instead of day buttons
