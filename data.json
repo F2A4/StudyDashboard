@@ -63,6 +63,21 @@
       "ects": 5,
       "versuch": 1,
       "datum": "2025-10-01"
+    },
+    {
+      "semester": 2,
+      "prüfungsname": "Datenbanken",
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-11-15"
+    },
+    {
+      "semester": 2,
+      "prüfungsname": "Webentwicklung",
+      "ects": 5,
+      "versuch": 1,
+      "datum": "2025-12-10",
+      "note": 2.7
     }
   ],
   "study_time": [
@@ -197,6 +212,10 @@
     {
       "week_start": "2025-10-06",
       "hours": 44.2
+    },
+    {
+      "week_start": "2025-10-13",
+      "hours": 15.0
     }
   ]
 }

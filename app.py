@@ -40,11 +40,6 @@ class Dashboard(tk.Tk):
         self.configure(bg=COLOR_BG)
         self._build()
 
-    def _card(self, parent: tk.Widget):
-        frame = ttk.Frame(parent)
-        frame['padding'] = 10
-        return frame
-
     def _get_progression_width(self, status: str, max_width: int) -> int:
         if status == "red":
             return max_width // 4  # 25%
